@@ -8,6 +8,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt install -y qemu-user-static
       - uses: cachix/install-nix-action@v27
-        extra_nix_config: |
-          system = aarch64-linux
+        with:
+          extra_nix_config: |
+            system = aarch64-linux
       - run: nix build .
