@@ -62,4 +62,4 @@ jobs:
           -- --skip-cached --no-nom
           --systems aarch64-linux
           --flake
-          ".#checks.aarch64-linux"
+          ".#packages.aarch64-linux"
