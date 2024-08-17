@@ -54,7 +54,8 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "rust-overlay": "rust-overlay"
+        "rust-overlay": "rust-overlay",
+        "zksync-era": "zksync-era"
       }
     },
     "rust-overlay": {
@@ -87,6 +88,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "zksync-era": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720621509,
+        "narHash": "sha256-YKThINy36KvtXdSQXNNTSg5WznOmbReGTgf1ounnvx4=",
+        "owner": "matter-labs",
+        "repo": "zksync-era",
+        "rev": "9cdee2c1d3574abb0d8e116c63262f058ebae0a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "matter-labs",
+        "ref": "core-v24.9.0",
+        "repo": "zksync-era",
         "type": "github"
       }
     }

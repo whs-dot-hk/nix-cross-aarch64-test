@@ -3,29 +3,36 @@
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   inputs.rust-overlay.url = "github:oxalica/rust-overlay";
 
+  inputs.zksync-era.url = "github:matter-labs/zksync-era/core-v24.9.0";
+
+  inputs.zksync-era.flake = false;
+
   outputs = {
     flake-utils,
     nixpkgs,
     rust-overlay,
     self,
     ...
-  }:
+  } @ inputs:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
-        crossSystem = "aarch64-linux";
         inherit system;
         overlays = [(import rust-overlay)];
       };
       rustPlatform = pkgs.makeRustPlatform {
-        cargo = pkgs.rust-bin.stable.latest.minimal;
-        rustc = pkgs.rust-bin.stable.latest.minimal;
+        cargo = pkgs.rust-bin.fromRustupToolchainFile (inputs.zksync-era + /rust-toolchain);
+        rustc = pkgs.rust-bin.fromRustupToolchainFile (inputs.zksync-era + /rust-toolchain);
       };
     in {
       packages.default = let
-        test = rustPlatform.buildRustPackage {
-          cargoHash = "sha256-Z5Z37/wwoZufEuwB8PVIJyIJr2bwo+xDVFkJl6n8nHg=";
+        test = rustPlatform.buildRustPackage.override {stdenv = pkgs.clangStdenv;} {
+          buildInputs = [pkgs.openssl];
+          cargoBuildFlags = "--bin zksync_external_node";
+          cargoHash = "sha256-Xmt1t18REM2DwWqOQcBlR4TiwmUIiTPm4J2pnfynb/w=";
+          doCheck = false;
+          nativeBuildInputs = [pkgs.pkg-config pkgs.rustPlatform.bindgenHook];
           pname = "test";
-          src = ./.;
+          src = inputs.zksync-era + /.;
           version = "1.0.0";
         };
       in
