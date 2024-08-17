@@ -6,11 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      #- uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-qemu-action@v3
       - uses: cachix/install-nix-action@v27
         with:
           extra_nix_config: |
             system = aarch64-linux
-            extra-platforms = aarch64-linux
-            sandbox = false
       - run: nix build .
