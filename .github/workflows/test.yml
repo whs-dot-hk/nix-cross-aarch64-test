@@ -77,4 +77,5 @@ jobs:
     - run: |
         nix build .#packages.aarch64-linux.default
         docker load < result
+        docker tag test:nix ghcr.io/whs-dot-hk/nix-cross-aarch64-test:test
         docker push ghcr.io/whs-dot-hk/nix-cross-aarch64-test:test
