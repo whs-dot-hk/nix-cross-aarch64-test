@@ -28,7 +28,7 @@
         test = rustPlatform.buildRustPackage.override {stdenv = pkgs.clangStdenv;} {
           buildInputs = [pkgs.openssl];
           cargoBuildFlags = "--bin zksync_external_node";
-          cargoHash = "sha256-Xmt1t18REM2DwWqOQcBlR4TiwmUIiTPm4J2pnfynb/w=";
+          cargoHash = "sha256-7CO48+RFqlhm+/6QVNyX8059orU9DhrzLbZyEA/M0hg=";
           doCheck = false;
           nativeBuildInputs = [pkgs.pkg-config pkgs.rustPlatform.bindgenHook];
           pname = "test";
