@@ -78,6 +78,5 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - run: |
-        ls -al
-        docker load<result
+        docker load < result
         docker push ghcr.io/whs-dot-hk/nix-cross-aarch64-test:test
