@@ -33,7 +33,7 @@
           nativeBuildInputs = [pkgs.pkg-config pkgs.rustPlatform.bindgenHook];
           pname = "test";
           src = inputs.zksync-era + /.;
-          version = "1.0.0";
+          version = "1.0.1";
         };
       in
         with pkgs;
