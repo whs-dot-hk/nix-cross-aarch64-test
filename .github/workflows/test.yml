@@ -76,5 +76,6 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - run: |
         docker load<result
+      shell: bash
     - run: |
         docker push ghcr.io/whs-dot-hk/nix-cross-aarch64-test:test
